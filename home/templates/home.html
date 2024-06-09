@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% block content %} {% include "hero_section.html" %}
+<div>
+  <div class="brand-name py-5">
+    <div
+      class="d-flex flex-wrap align-items-center justify-content-center gap-4"
+    >
+      {% for brand in brand_list %}
+      <div class="py-3 px-5 bg-dark text-white rounded-2">
+        <a href="{% url 'car_list' brand.slug %}" class="nav-link fw-bold">{{brand.name}}</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="car_list py-5">
+    <h4 class="pb-3">Total Car: {{car_data|length}}</h4>
+    <div class="row g-4">
+        {% for car in car_data %}
+        <div class="col-xl-4 col-lg-4 col-md-6">
+            <div class="card m-0 p-0">
+                <img
+                  class="card-img-top w-100"
+                  src="{{car.image.url}}"
+                  alt=""
+                />
+                <div class="card-body">
+                  <h5 class="card-title">{{car.name}}</h5>
+                  <div class="d-flex flex-column gap-2">
+                    <div class="d-flex gap-2"><span class="fw-bold">Brand:</span> <span>{{car.brand}}</span></div>
+                  <div class="d-flex gap-2">
+                    <span class="fw-bold">Price:</span><span>${{car.price|floatformat:2}}</span>
+                  </div>
+                  <div class="d-flex gap-2">
+                    <span class="fw-bold">Quantity:</span><span>{{car.quantity}}</span>
+                  </div>
+                  <a href="{% url 'car_details' car.slug %}" class="btn btn-dark text-white">View Details</a>
+                  </div>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock content %}

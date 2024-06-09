@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="w-75 mx-auto py-3">
+    <h1 class="fw-bold">Create a new account</h1>
+    <form action="" method="post" class="d-flex flex-column gap-3 py-4" novalidate>
+        {% csrf_token %}
+        {% for fm in form %}
+        {{fm.label}}
+        {{fm}}
+        <span class="text-danger">{{fm.errors}}</span>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary fw-bold btn-sm py-2">Submit</button>
+    </form>
+</div>
+{% endblock content %}

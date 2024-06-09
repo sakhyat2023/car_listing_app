@@ -1,0 +1,20 @@
+{% load static %}
+<div class="hero-section row g-4 py-3">
+    <div class="hero-img col-lg-6">
+      <img
+        src="{% static 'images/hero.webp' %}"
+        alt=""
+        class="w-100 h-100 rounded-2"
+      />
+    </div>
+    <div class="col-lg-6">
+      <div class="d-flex flex-column gap-3">
+        {% for car in car_data|slice:":5" %}
+        <div class="content py-2 px-4 border border-1 rounded-2">
+          <a href="{% url 'car_details' car.slug %}" class="fs-3 fw-semibold nav-link">{{car.name}}</a>
+          <p class="text-muted">{{car.brand}}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
